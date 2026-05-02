@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AI智能体演示</title>
+  <style>
+    body{margin:0;padding:0;}
+  </style>
+</head>
+<body>
+
+<script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+<script>
+new CozeWebSDK.WebChatClient({
+  config: {
+    bot_id: "76337023308893235",
+  },
+  componentProps: {
+    title: "我的AI助手",
+  },
+  auth: {
+    type: "none"
+  }
+});
+</script>
+
+</body>
+</html>
