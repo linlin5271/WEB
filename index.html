@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>AI智能体演示</title>
-  <style>
-    body{margin:0;padding:0;}
-  </style>
+<meta charset="UTF-8">
+<title>AI智能体演示</title>
 </head>
 <body>
 
@@ -13,13 +10,17 @@
 <script>
 new CozeWebSDK.WebChatClient({
   config: {
-    bot_id: "76337023308893235",
+    bot_id: "7633702353308893235",
   },
   componentProps: {
     title: "我的AI助手",
   },
   auth: {
-    type: "none"
+    type: "token",
+    token: "pat_NmBCz4szLHQG1k4Oy1L8lywEQz3PruaFLNFquwQcM2awE1NAK7l74i2qZmCLcd6l",
+    onRefreshToken: function () {
+      return "pat_NmBCz4szLHQG1k4Oy1L8lywEQz3PruaFLNFquwQcM2awE1NAK7l74i2qZmCLcd6l";
+    }
   }
 });
 </script>
