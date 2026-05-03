@@ -6,24 +6,24 @@
 </head>
 <body>
 
+
 <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
 <script>
-new CozeWebSDK.WebChatClient({
-  config: {
-    bot_id: "7633702353308893235",
-  },
-  componentProps: {
-    title: "我的AI助手",
-  },
-  auth: {
-    type: "token",
-    token: "pat_NmBCz4szLHQG1k4Oy1L8lywEQz3PruaFLNFquwQcM2awE1NAK7l74i2qZmCLcd6l",
-    onRefreshToken: function () {
-      return "pat_NmBCz4szLHQG1k4Oy1L8lywEQz3PruaFLNFquwQcM2awE1NAK7l74i2qZmCLcd6l";
+  new CozeWebSDK.WebChatClient({
+    config: {
+      bot_id: '7633702353308893235',
+    },
+    componentProps: {
+      title: 'Coze',
+    },
+    auth: {
+      type: 'token',
+      token: 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI',
+      onRefreshToken: function () {
+        return 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI'
+      }
     }
-  }
-});
+  });
 </script>
-
 </body>
 </html>
