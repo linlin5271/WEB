@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI智能助手 - Coze智能体</title>
+<title>智能记账助手 - Coze智能体</title>
 <style>
   * {
     margin: 0;
@@ -243,6 +243,116 @@
       min-height: 500px;
     }
   }
+
+  /* 右下角浮动图标 */
+  .floating-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    animation: pulse 2s infinite;
+  }
+
+  .floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.7);
+  }
+
+  .floating-btn-icon {
+    font-size: 28px;
+    color: white;
+  }
+
+  .floating-btn-tooltip {
+    position: absolute;
+    right: 70px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .floating-btn:hover .floating-btn-tooltip {
+    opacity: 1;
+  }
+
+  /* 脉冲动画 */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+    }
+    50% {
+      box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8), 0 0 40px rgba(102, 126, 234, 0.4);
+    }
+    100% {
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+    }
+  }
+
+  /* 新消息提示 */
+  .notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    background: #ff4757;
+    border-radius: 50%;
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* 拖动提示 */
+  .drag-hint {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 9998;
+    animation: slideUp 0.5s ease;
+  }
+
+  .drag-hint-icon {
+    font-size: 20px;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 </style>
 </head>
 <body>
@@ -251,7 +361,7 @@
   <header class="header">
     <div class="logo">
       <div class="logo-icon">AI</div>
-      <span class="logo-text">智能助手</span>
+      <span class="logo-text">智能记账助手</span>
     </div>
     <div class="header-actions">
       <button class="btn btn-outline">帮助文档</button>
@@ -264,28 +374,8 @@
     
     <!-- 欢迎区 -->
     <section class="welcome-section">
-      <h1 class="welcome-title">欢迎使用 AI 智能助手</h1>
-      <p class="welcome-subtitle">基于 Coze 平台打造的智能对话机器人，为您提供便捷的 AI 服务</p>
-      
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">💬</div>
-          <h3 class="feature-title">智能对话</h3>
-          <p class="feature-desc">支持多轮对话，理解上下文语境，提供精准的智能回复</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3 class="feature-title">快速响应</h3>
-          <p class="feature-desc">毫秒级响应速度，即问即答，高效解决您的问题</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3 class="feature-title">安全可靠</h3>
-          <p class="feature-desc">企业级安全保障，数据加密传输，保护您的隐私安全</p>
-        </div>
-      </div>
+      <h1 class="welcome-title">欢迎使用智能记账助手</h1>
+      <p class="welcome-subtitle">基于 Coze 平台的智能记账机器人，帮您轻松管理每一笔收支</p>
     </section>
 
     <!-- 聊天区域 -->
@@ -293,8 +383,8 @@
       <div class="chat-header">
         <div class="chat-header-icon">🤖</div>
         <div class="chat-header-info">
-          <h3>Coze 智能体</h3>
-          <p>在线 · 随时为您服务</p>
+          <h3>智能记账助手</h3>
+          <p>在线 · 随时为您记账</p>
         </div>
       </div>
       <div class="chat-body">
@@ -322,8 +412,54 @@
 
   <!-- 底部 -->
   <footer class="footer">
-    <p>© 2026 AI智能助手 · 让智能触手可及</p>
+    <p>© 2026 智能记账助手 · 让记账更简单</p>
   </footer>
+
+  <!-- 右下角浮动图标 -->
+  <div class="floating-btn" onclick="toggleChat()" title="智能记账助手">
+    <span class="floating-btn-icon">💰</span>
+    <span class="floating-btn-tooltip">智能记账助手 - 点击开始记账</span>
+  </div>
+
+  <!-- 拖动提示 -->
+  <div class="drag-hint">
+    <span class="drag-hint-icon">💡</span>
+    <span>点击右下角图标，使用智能记账助手</span>
+  </div>
+
+  <script>
+    function toggleChat() {
+      // 隐藏提示
+      const hint = document.querySelector('.drag-hint');
+      if (hint) {
+        hint.style.display = 'none';
+      }
+      
+      // 触发 Coze 聊天窗口打开
+      const chatBtn = document.querySelector('[data-testid="chat-open-btn"]') || 
+                      document.querySelector('.coze-chat-btn') ||
+                      document.querySelector('[class*="chat"]');
+      
+      if (chatBtn) {
+        chatBtn.click();
+      } else {
+        // 如果找不到，滚动到聊天区域
+        document.querySelector('.chat-container').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+
+    // 3秒后自动隐藏提示
+    setTimeout(() => {
+      const hint = document.querySelector('.drag-hint');
+      if (hint) {
+        hint.style.opacity = '0';
+        setTimeout(() => hint.remove(), 500);
+      }
+    }, 5000);
+  </script>
 
 </body>
 </html>
