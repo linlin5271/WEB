@@ -1,31 +1,329 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>AI智能体演示</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI智能助手 - Coze智能体</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 顶部导航栏 */
+  .header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .logo-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid #667eea;
+    color: #667eea;
+  }
+
+  .btn-outline:hover {
+    background: #667eea;
+    color: white;
+  }
+
+  /* 主内容区 */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  /* 欢迎区 */
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .welcome-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .welcome-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 32px;
+  }
+
+  .features {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 24px;
+    width: 280px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .feature-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .feature-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* 聊天容器 */
+  .chat-container {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    flex: 1;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-header-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .chat-header-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .chat-header-info p {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .chat-body {
+    flex: 1;
+    position: relative;
+  }
+
+  /* 底部 */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+  }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .header {
+      padding: 12px 16px;
+    }
+
+    .welcome-title {
+      font-size: 32px;
+    }
+
+    .welcome-subtitle {
+      font-size: 16px;
+    }
+
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature-card {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .chat-container {
+      min-height: 500px;
+    }
+  }
+</style>
 </head>
 <body>
 
+  <!-- 顶部导航 -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">AI</div>
+      <span class="logo-text">智能助手</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline">帮助文档</button>
+      <button class="btn btn-primary">关于我们</button>
+    </div>
+  </header>
 
-<script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
-<script>
-  new CozeWebSDK.WebChatClient({
-    config: {
-      bot_id: '7633702353308893235',
-    },
-    componentProps: {
-      title: 'Coze',
-    },
-    auth: {
-      type: 'token',
-      token: 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI',
-      onRefreshToken: function () {
-        return 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI'
-      }
-    }
-  });
-</script>
- 
-</script>
+  <!-- 主内容 -->
+  <main class="main-content">
+    
+    <!-- 欢迎区 -->
+    <section class="welcome-section">
+      <h1 class="welcome-title">欢迎使用 AI 智能助手</h1>
+      <p class="welcome-subtitle">基于 Coze 平台打造的智能对话机器人，为您提供便捷的 AI 服务</p>
+      
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3 class="feature-title">智能对话</h3>
+          <p class="feature-desc">支持多轮对话，理解上下文语境，提供精准的智能回复</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">快速响应</h3>
+          <p class="feature-desc">毫秒级响应速度，即问即答，高效解决您的问题</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">安全可靠</h3>
+          <p class="feature-desc">企业级安全保障，数据加密传输，保护您的隐私安全</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 聊天区域 -->
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="chat-header-icon">🤖</div>
+        <div class="chat-header-info">
+          <h3>Coze 智能体</h3>
+          <p>在线 · 随时为您服务</p>
+        </div>
+      </div>
+      <div class="chat-body">
+        <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+        <script>
+          new CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7633702353308893235',
+            },
+            componentProps: {
+              title: 'Coze',
+            },
+            auth: {
+              type: 'token',
+              token: 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI',
+              onRefreshToken: function () {
+                return 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI'
+              }
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <p>© 2026 AI智能助手 · 让智能触手可及</p>
+  </footer>
+
 </body>
 </html>
