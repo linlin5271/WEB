@@ -19,78 +19,6 @@
     flex-direction: column;
   }
 
-  /* 顶部导航栏 */
-  .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    padding: 16px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .logo-text {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-  }
-
-  .header-actions {
-    display: flex;
-    gap: 12px;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-  }
-
-  .btn-outline {
-    background: transparent;
-    border: 2px solid #667eea;
-    color: #667eea;
-  }
-
-  .btn-outline:hover {
-    background: #667eea;
-    color: white;
-  }
-
   /* 主内容区 */
   .main-content {
     flex: 1;
@@ -118,44 +46,6 @@
     font-size: 20px;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 32px;
-  }
-
-  .features {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .feature-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    padding: 24px;
-    width: 280px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .feature-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
-
-  .feature-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-  }
-
-  .feature-desc {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
   }
 
   /* 聊天容器 */
@@ -207,20 +97,8 @@
     position: relative;
   }
 
-  /* 底部 */
-  .footer {
-    text-align: center;
-    padding: 20px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-  }
-
   /* 响应式 */
   @media (max-width: 768px) {
-    .header {
-      padding: 12px 16px;
-    }
-
     .welcome-title {
       font-size: 32px;
     }
@@ -229,145 +107,13 @@
       font-size: 16px;
     }
 
-    .features {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .feature-card {
-      width: 100%;
-      max-width: 320px;
-    }
-
     .chat-container {
       min-height: 500px;
-    }
-  }
-
-  /* 右下角浮动图标 */
-  .floating-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
-    transition: all 0.3s ease;
-    z-index: 9999;
-    animation: pulse 2s infinite;
-  }
-
-  .floating-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.7);
-  }
-
-  .floating-btn-icon {
-    font-size: 28px;
-    color: white;
-  }
-
-  .floating-btn-tooltip {
-    position: absolute;
-    right: 70px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .floating-btn:hover .floating-btn-tooltip {
-    opacity: 1;
-  }
-
-  /* 脉冲动画 */
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
-    }
-    50% {
-      box-shadow: 0 4px 30px rgba(102, 126, 234, 0.8), 0 0 40px rgba(102, 126, 234, 0.4);
-    }
-    100% {
-      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
-    }
-  }
-
-  /* 新消息提示 */
-  .notification-badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    width: 16px;
-    height: 16px;
-    background: #ff4757;
-    border-radius: 50%;
-    animation: bounce 1s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-
-  /* 拖动提示 */
-  .drag-hint {
-    position: fixed;
-    bottom: 100px;
-    right: 24px;
-    background: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    font-size: 14px;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 9998;
-    animation: slideUp 0.5s ease;
-  }
-
-  .drag-hint-icon {
-    font-size: 20px;
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
     }
   }
 </style>
 </head>
 <body>
-
-  <!-- 顶部导航 -->
-  <header class="header">
-    <div class="logo">
-      <div class="logo-icon">AI</div>
-      <span class="logo-text">智能记账助手</span>
-    </div>
-    <div class="header-actions">
-      <button class="btn btn-outline">帮助文档</button>
-      <button class="btn btn-primary">关于我们</button>
-    </div>
-  </header>
 
   <!-- 主内容 -->
   <main class="main-content">
@@ -388,77 +134,29 @@
         </div>
       </div>
       <div class="chat-body">
-        <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
-        <script>
-          new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7633702353308893235',
-            },
-            componentProps: {
-              title: 'Coze',
-            },
-            auth: {
-              type: 'token',
-              token: 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI',
-              onRefreshToken: function () {
-                return 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI'
-              }
-            }
-          });
-        </script>
+        <!-- Coze 聊天组件将在这里加载 -->
       </div>
     </div>
   </main>
 
-  <!-- 底部 -->
-  <footer class="footer">
-    <p>© 2026 智能记账助手 · 让记账更简单</p>
-  </footer>
-
-  <!-- 右下角浮动图标 -->
-  <div class="floating-btn" onclick="toggleChat()" title="智能记账助手">
-    <span class="floating-btn-icon">💰</span>
-    <span class="floating-btn-tooltip">智能记账助手 - 点击开始记账</span>
-  </div>
-
-  <!-- 拖动提示 -->
-  <div class="drag-hint">
-    <span class="drag-hint-icon">💡</span>
-    <span>点击右下角图标，使用智能记账助手</span>
-  </div>
-
+  <!-- Coze SDK -->
+  <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
   <script>
-    function toggleChat() {
-      // 隐藏提示
-      const hint = document.querySelector('.drag-hint');
-      if (hint) {
-        hint.style.display = 'none';
+    new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7633702353308893235',
+      },
+      componentProps: {
+        title: '智能记账助手',
+      },
+      auth: {
+        type: 'token',
+        token: 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI',
+        onRefreshToken: function () {
+          return 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI'
+        }
       }
-      
-      // 触发 Coze 聊天窗口打开
-      const chatBtn = document.querySelector('[data-testid="chat-open-btn"]') || 
-                      document.querySelector('.coze-chat-btn') ||
-                      document.querySelector('[class*="chat"]');
-      
-      if (chatBtn) {
-        chatBtn.click();
-      } else {
-        // 如果找不到，滚动到聊天区域
-        document.querySelector('.chat-container').scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'center'
-        });
-      }
-    }
-
-    // 3秒后自动隐藏提示
-    setTimeout(() => {
-      const hint = document.querySelector('.drag-hint');
-      if (hint) {
-        hint.style.opacity = '0';
-        setTimeout(() => hint.remove(), 500);
-      }
-    }, 5000);
+    });
   </script>
 
 </body>
