@@ -1,144 +1,149 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能记账助手 - Coze智能体</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 主内容区 */
-  .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-  }
-
-  /* 欢迎区 */
-  .welcome-section {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .welcome-title {
-    font-size: 48px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 16px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  .welcome-subtitle {
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 32px;
-  }
-
-  .tip-text {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.15);
-    padding: 12px 24px;
-    border-radius: 25px;
-    display: inline-block;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 0.9;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智能记账助手 - Coze智能体</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    50% {
-      transform: scale(1.02);
-      opacity: 1;
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-  }
 
-  /* 聊天容器 */
-  .chat-container {
-    width: 100%;
-    max-width: 900px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    flex: 1;
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-  }
+    /* 主内容区 */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
 
-  .chat-header {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+    /* 欢迎区 */
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-  .chat-header-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-  }
-
-  .chat-header-info h3 {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .chat-header-info p {
-    font-size: 12px;
-    opacity: 0.9;
-  }
-
-  .chat-body {
-    flex: 1;
-    position: relative;
-  }
-
-  /* 响应式 */
-  @media (max-width: 768px) {
     .welcome-title {
-      font-size: 32px;
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .welcome-subtitle {
-      font-size: 16px;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
     }
 
-    .chat-container {
-      min-height: 500px;
+    .tip-text {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.15);
+      padding: 12px 24px;
+      border-radius: 25px;
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
     }
-  }
-</style>
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+
+      50% {
+        transform: scale(1.02);
+        opacity: 1;
+      }
+    }
+
+    /* 聊天容器 */
+    .chat-container {
+      width: 100%;
+      max-width: 900px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      flex: 1;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-header-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .chat-header-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .chat-header-info p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .chat-body {
+      flex: 1;
+      position: relative;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .welcome-title {
+        font-size: 32px;
+      }
+
+      .welcome-subtitle {
+        font-size: 16px;
+      }
+
+      .chat-container {
+        min-height: 500px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- 主内容 -->
   <main class="main-content">
-    
+
     <!-- 欢迎区 -->
     <section class="welcome-section">
       <h1 class="welcome-title">欢迎使用智能记账助手</h1>
@@ -169,17 +174,18 @@
         bot_id: '7633702353308893235',
       },
       componentProps: {
-        title: '智能记账助手',
+        title: 'Coze',
       },
       auth: {
         type: 'token',
-        token: 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI',
+        token: 'pat_bCv7BXExWDBIQFPW5pXtjzkjDHFhuSXVgomB9maL5czRO0DcfvS7lAcRVBTqQirC',
         onRefreshToken: function () {
-          return 'pat_6yHnsWjQGEsfejd9IKlvjtyVVhFd2NurDbbaxbp0Ocbc9VWnynyDLtjta9HbPuaI'
+          return 'pat_bCv7BXExWDBIQFPW5pXtjzkjDHFhuSXVgomB9maL5czRO0DcfvS7lAcRVBTqQirC'
         }
       }
     });
   </script>
 
 </body>
+
 </html>
